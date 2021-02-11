@@ -12,6 +12,15 @@
 <script>
   window.SpeechRecognition = window.SpeechRecognition || window.webkitSpeechRecognition;
 
+    const recognition = new SpeechRecognition();
+
+    //We need this to keep it populating while speaking is ongoing. Without, it'd wait until speech stops.
+    recognition.interimResults = true;
+
+    let p = document.createElement('p');
+    const words = document.querySelector('.words');
+    words.appendChild(p);
+    
 
 </script>
 
