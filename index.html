@@ -15,12 +15,24 @@
     const recognition = new SpeechRecognition();
 
     //We need this to keep it populating while speaking is ongoing. Without, it'd wait until speech stops.
-    recognition.interimResults = true;
+      recognition.interimResults = true;
+      recognition.lang = 'en-US';
 
     let p = document.createElement('p');
     const words = document.querySelector('.words');
     words.appendChild(p);
-    
+
+    recognition.addEventListener('result', e => {
+      // console.log(e.results);
+      const transcript = Array.from(e.results)
+      .map(result => result[0])
+      .map(result => result.transcript)
+      .join('');
+      console.log(transcript);
+    })
+
+    recognition.start();
+
 
 </script>
 
